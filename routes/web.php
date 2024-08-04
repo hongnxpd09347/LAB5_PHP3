@@ -7,14 +7,20 @@ use App\Http\Controllers\QTinController;
 use App\Http\Controllers\AboutController;
 use App\Http\Controllers\ThongtinController;
 
-Route::get('/', [TinController::class, 'index']);
-Route::get('/tin/{id}', [TinController::class, 'chitiet']);
-Route::get('/cat/{id}', [TinController::class, 'tintrongloai']);
+// Route::get('/', [TinController::class, 'index']);
+// Route::get('/tin/{id}', [TinController::class, 'chitiet']);
+// Route::get('/cat/{id}', [TinController::class, 'tintrongloai']);
 
+Route::get('/tin', [QTinController::class, 'index']);
+Route::get('/tin/them', [QTinController::class, 'create']);
+Route::post('/tin/them', [QTinController::class, 'store']);
+Route::delete('/tin/{id}', [QTinController::class, 'destroy']);
+Route::get('/tin/sua/{id}', [QTinController::class, 'edit']);
+Route::post('/tin/sua/{id}', [QTinController::class, 'update']);
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+// Route::get('/dashboard', function () {
+//     return view('dashboard');
+// })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
